@@ -9,13 +9,13 @@ Installation instruction
  "repositories": [
    {
      "type": "git",
-     "url": "git@github.com:expertsenderfr/expertsender-api-php.git"
+     "url": "git@github.com:encreinformatique/expertsender-api-php.git"
    }
  ],
 ```
 
 2. Add the package to your dependencies by running
-`composer require tdf/expertsender-api-php`
+`composer require expertsenderfr/expertsender-api-php`
 
 Services documentation
 ----------------------
