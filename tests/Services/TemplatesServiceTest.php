@@ -81,10 +81,10 @@ EOF;
         /*
          * assertInternalType is deprecated since PHPUnit 7.5
          */
-        if (method_exists($this, 'assertInternalType')) {
-            $this->assertInternalType('array', $templates);
-        } else {
+        if (method_exists($this, 'assertIsArray')) {
             $this->assertIsArray($templates);
+        } else {
+            $this->assertInternalType('array', $templates);
         }
         $this->assertContainsOnly(Template::class, $templates);
         $this->assertSame(1, $templates[0]->getExternalId());

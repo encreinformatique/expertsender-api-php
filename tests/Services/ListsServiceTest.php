@@ -52,10 +52,10 @@ EOF;
         /*
          * assertInternalType is deprecated since PHPUnit 7.5
          */
-        if (method_exists($this, 'assertInternalType')) {
-            $this->assertInternalType('array', $lists);
-        } else {
+        if (method_exists($this, 'assertIsArray')) {
             $this->assertIsArray($lists);
+        } else {
+            $this->assertInternalType('array', $lists);
         }
         $this->assertContainsOnly(RemoteList::class, $lists);
         $this->assertSame(1, $lists[0]->getExternalId());
