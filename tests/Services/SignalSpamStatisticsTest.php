@@ -54,46 +54,42 @@ class SignalSpamStatisticsTest extends TestCase
         $this->assertTrue($service->delete(341, ['api_key' => '<YOUR_API_KEY_HERE>', 'domain' => 'https://api2.esv2.com']));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage API Key not set.
-     */
     public function testDeleteThrowsExceptionIfNoApiKeyIsSet()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('API Key not set.');
+
         $client = new ExpertSenderClient();
         $service = $client->messages();
 
         $service->delete(341, ['domain' => 'https://api2.esv2.com']);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testDeleteThrowsExceptionIfNoDomainIsSet()
     {
+        $this->expectException(\Symfony\Component\OptionsResolver\Exception\InvalidOptionsException::class);
+
         $client = new ExpertSenderClient();
         $service = $client->messages();
 
         $service->delete(341, ['api_key' => '<YOUR_API_KEY_HERE>']);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The domain cannot be an empty string.
-     */
     public function testDeleteThrowsExceptionIfDomainIsEmpty()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The domain cannot be an empty string.');
+
         $client = new ExpertSenderClient();
         $service = $client->messages();
 
         $service->delete(341, ['api_key' => '<YOUR_API_KEY_HERE>', 'domain' => '']);
     }
 
-    /**
-     * @expectedException \ExpertSenderFr\ExpertSenderApi\NoRecipientsException
-     */
     public function testCreateNewsletterThrowsExceptionWhenNoRecipientIsSet()
     {
+        $this->expectException(\ExpertSenderFr\ExpertSenderApi\NoRecipientsException::class);
+
         $client = new ExpertSenderClient('<YOUR_API_KEY_HERE>', 'https://api2.esv2.com');
         $service = $client->messages();
 

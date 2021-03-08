@@ -12,6 +12,8 @@ use ExpertSenderFr\ExpertSenderApi\Services\SignalSpamStatistics;
 
 class ExpertSenderClientTest extends TestCase
 {
+    use AssertTrait;
+
     /**
      * @test
      */
@@ -22,8 +24,8 @@ class ExpertSenderClientTest extends TestCase
         $service = $client->messages();
 
         $this->assertInstanceOf(Messages::class, $service);
-        $this->assertAttributeSame($client, 'client', $service);
-        $this->assertAttributeEquals('http://api.example.com', 'domain', $service);
+        $this->assertEquals($client, $this->getAttribute($service, 'client'));
+        $this->assertEquals('http://api.example.com', $this->getAttribute($service, 'domain'));
     }
 
     /**
@@ -36,18 +38,21 @@ class ExpertSenderClientTest extends TestCase
         $service = $client->signalSpamStatistics();
 
         $this->assertInstanceOf(SignalSpamStatistics::class, $service);
-        $this->assertAttributeSame($client, 'client', $service);
-        $this->assertAttributeEquals('http://api.example.com', 'domain', $service);
+
+        $attributeName = 'client';
+
+        $this->assertEquals($client, $this->getAttribute($service, 'client'));
+        $this->assertEquals('http://api.example.com', $this->getAttribute($service, 'domain'));
     }
 
     /**
      * @test
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage API Key not set.
      */
     public function throwsExceptionIfRequestIsGetRequestAndThereIsNoApiKey()
     {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('API Key not set.');
+
         $client = new ExpertSenderClient(null, 'http://api.example.com');
         $client->sendRequest('http://api.example/hello', [], ApiRequest::REQUEST_GET, '');
     }

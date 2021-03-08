@@ -26,7 +26,7 @@ class SubscribersTest extends TestCase
         $this->client = new AssertRequestClient();
     }
 
-    public function setUp()
+    public function setUpTest()
     {
         $this->createClient();
 
@@ -41,6 +41,8 @@ class SubscribersTest extends TestCase
      */
     public function canAddASubscriber()
     {
+        $this->setUpTest();
+
         $expectedRequestContent = <<<EOF
 <?xml version="1.0"?>
 <ApiRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"><ApiKey>1234</ApiKey><Data xsi:type="Subscriber"><ListId>1</ListId><Mode>AddAndUpdate</Mode><MatchingMode>Email</MatchingMode><Force>false</Force><AllowUnsubscribed>true</AllowUnsubscribed><AllowRemoved>true</AllowRemoved><Email>john.smith@example.com</Email><Properties><Property><Id>2</Id><Value xsi:type="xs:string">student</Value></Property><Property><Id>3</Id><Value xsi:type="xs:dateTime">1985-03-12</Value></Property></Properties></Data></ApiRequest>
@@ -73,6 +75,8 @@ EOF;
      */
     public function throwsExceptionIfTheOptionsAreNotAnInstanceOfAddSubscriberOptions()
     {
+        $this->setUpTest();
+
         $subscriber = new Subscriber('john.smith@example.com');
 
         $this->expectException(\InvalidArgumentException::class);

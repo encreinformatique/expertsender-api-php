@@ -2,6 +2,7 @@
 
 namespace ExpertSenderFr\ExpertSenderApi\Tests\Services;
 
+use ExpertSenderFr\ExpertSenderApi\Tests\AssertTrait;
 use PHPUnit\Framework\TestCase;
 use ExpertSenderFr\ExpertSenderApi\ApiResponse;
 use ExpertSenderFr\ExpertSenderApi\ExpertSenderClient;
@@ -13,6 +14,8 @@ use ExpertSenderFr\ExpertSenderApi\Tests\TestClient;
 
 class TemplatesServiceTest extends TestCase
 {
+    use AssertTrait;
+
     /**
      * @test
      */
@@ -23,8 +26,8 @@ class TemplatesServiceTest extends TestCase
         $service = new Templates($client, 'http://example.com');
 
         $this->assertInstanceOf(ApiService::class, $service);
-        $this->assertAttributeSame($client, 'client', $service);
-        $this->assertAttributeSame('http://example.com', 'domain', $service);
+        $this->assertEquals($client, $this->getAttribute($service, 'client'));
+        $this->assertEquals('http://example.com', $this->getAttribute($service, 'domain'));
     }
 
     /**
@@ -75,7 +78,14 @@ EOF;
         /** @var Template[] $templates */
         $templates = $service->get(null, ['api_key' => 'fake']);
 
-        $this->assertInternalType('array', $templates);
+        /*
+         * assertInternalType is deprecated since PHPUnit 7.5
+         */
+        if (method_exists($this, 'assertInternalType')) {
+            $this->assertInternalType('array', $templates);
+        } else {
+            $this->assertIsArray($templates);
+        }
         $this->assertContainsOnly(Template::class, $templates);
         $this->assertSame(1, $templates[0]->getExternalId());
         $this->assertSame('Default EN footer', $templates[0]->getName());

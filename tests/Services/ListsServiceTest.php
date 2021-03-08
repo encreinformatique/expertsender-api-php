@@ -49,7 +49,14 @@ EOF;
         /** @var RemoteList[] $lists */
         $lists = $service->get('bat', ['api_key' => 'fake']);
 
-        $this->assertInternalType('array', $lists);
+        /*
+         * assertInternalType is deprecated since PHPUnit 7.5
+         */
+        if (method_exists($this, 'assertInternalType')) {
+            $this->assertInternalType('array', $lists);
+        } else {
+            $this->assertIsArray($lists);
+        }
         $this->assertContainsOnly(RemoteList::class, $lists);
         $this->assertSame(1, $lists[0]->getExternalId());
         $this->assertSame('clients', $lists[0]->getName());
