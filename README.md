@@ -1,5 +1,8 @@
 ExpertSender API PHP
 ====================
+
+![CI](https://github.com/encreinformatique/expertsender-api-php/workflows/CI/badge.svg)
+
 This project is a PHP wrapper for the ExpertSender API
 
 This is a fork from [expertsenderfr/expertsender-api-php](https://github.com/expertsenderfr/expertsender-api-php)
