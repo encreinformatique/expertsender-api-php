@@ -41,12 +41,16 @@ class NewsletterCreationPayload
         'New Zealand Standard Time',
         'Magadan Standard Time',
     ];
+    /** @var array $suppressionLists */
     private $subscriberList = [];
+    /** @var array $suppressionLists */
     private $subscriberSegments = [];
+    /** @var array $suppressionLists */
     private $seedLists = [];
+    /** @var array $suppressionLists */
+    private $suppressionLists = [];
 
     // Content
-    private $suppressionLists;
     private $subject;
     private $fromName;
     private $fromEmail;
@@ -58,15 +62,15 @@ class NewsletterCreationPayload
     private $googleAnalyticsTags;
     private $header;
     private $footer;
-    private $tags;
-    private $attachments;
+    private $tags = [];
+    private $attachments = [];
 
     // Delivery Settings
-    private $urlIntegrations;
+    private $urlIntegrations = [];
     private $deliveryDate;
     private $overrideDeliveryCap;
     private $throttling;
-    private $channels;
+    private $channels = [];
 
     public function __construct($subject, $fromName, $fromEmail)
     {

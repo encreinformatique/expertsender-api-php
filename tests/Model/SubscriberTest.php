@@ -49,12 +49,12 @@ class SubscriberTest extends TestCase
         $subscriber->setVendor('test');
         $subscriber->setIp('127.0.0.1');
 
-        $this->assertAttributeSame(56, 'customSubscriberId', $subscriber);
-        $this->assertAttributeSame('John Smith', 'name', $subscriber);
-        $this->assertAttributeSame('John', 'firstName', $subscriber);
-        $this->assertAttributeSame('Smith', 'lastName', $subscriber);
-        $this->assertAttributeSame(12345, 'trackingCode', $subscriber);
-        $this->assertAttributeSame('test', 'vendor', $subscriber);
-        $this->assertAttributeSame('127.0.0.1', 'ip', $subscriber);
+        $this->assertEquals(56, $subscriber->getCustomSubscriberId());
+        $this->assertEquals('John Smith', $subscriber->getName());
+        $this->assertEquals('John', $subscriber->getFirstName());
+        $this->assertEquals('Smith', $subscriber->getLastName());
+        $this->assertEquals(12345, $subscriber->getTrackingCode());
+        $this->assertEquals('test', $subscriber->getVendor());
+        $this->assertEquals('127.0.0.1', $subscriber->getIp());
     }
 }

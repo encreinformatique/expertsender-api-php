@@ -21,7 +21,7 @@ class AddSubscriberOptionsTest extends TestCase
 
         $options->disallowUnsubscribed();
 
-        $this->assertAttributeSame(false, 'allowUnsubscribed', $options);
+        self::assertFalse($options->areUnsubscribedAllowed());
     }
 
     /**
@@ -36,6 +36,6 @@ class AddSubscriberOptionsTest extends TestCase
 
         $options->disallowRemoved();
 
-        $this->assertAttributeSame(false, 'allowRemoved', $options);
+        self::assertFalse($options->areRemovedAllowed());
     }
 }

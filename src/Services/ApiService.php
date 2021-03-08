@@ -19,11 +19,14 @@ abstract class ApiService
 
     protected $logger;
 
+    /** @var string $domain */
+    protected $domain;
+
     /**
      * ApiService constructor.
      *
      * @param ExpertSenderClient $client
-     * @param                    $domain
+     * @param string             $domain
      */
     public function __construct(ExpertSenderClient $client, $domain)
     {

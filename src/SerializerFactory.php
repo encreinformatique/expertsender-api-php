@@ -10,7 +10,7 @@ class SerializerFactory
 {
     public static function createXmlSerializer()
     {
-        $encoders = [new XmlEncoder('ApiRequest')];
+        $encoders = [new XmlEncoder([XmlEncoder::ROOT_NODE_NAME => 'ApiRequest'])];
         $normalizers = [new ObjectNormalizer()];
 
         return new Serializer($normalizers, $encoders);

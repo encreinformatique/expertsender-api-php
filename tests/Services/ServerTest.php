@@ -2,9 +2,7 @@
 
 namespace ExpertSenderFr\ExpertSenderApi\Tests\Services;
 
-use DateTime;
 use DateTimeImmutable;
-use PHPUnit_Framework_MockObject_MockObject;
 use ExpertSenderFr\ExpertSenderApi\ApiRequest;
 use ExpertSenderFr\ExpertSenderApi\ApiResponse;
 use ExpertSenderFr\ExpertSenderApi\ExpertSenderClient;
@@ -18,7 +16,7 @@ class ServerTest extends TestCase
      */
     public function tryGetTime()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $response = new ApiResponse('<ApiResponse xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">

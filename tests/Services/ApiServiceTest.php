@@ -3,7 +3,6 @@
 namespace ExpertSenderFr\ExpertSenderApi\Tests\Services;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Log\LoggerInterface;
 use ExpertSenderFr\ExpertSenderApi\ApiRequest;
 use ExpertSenderFr\ExpertSenderApi\ApiResponse;
@@ -17,7 +16,7 @@ class ApiServiceTest extends TestCase
      */
     public function tryDoAll()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $client->expects($this->once())
@@ -35,13 +34,13 @@ class ApiServiceTest extends TestCase
 
     /**
      * @test
-     *
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The domain cannot be an empty string.
      */
     public function doAllThrowsExceptionWhenNoDomainIsSpecified()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The domain cannot be an empty string.');
+
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $service = new FakeApiService($client);
@@ -53,7 +52,7 @@ class ApiServiceTest extends TestCase
      */
     public function tryDoGet()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $client->expects($this->once())
@@ -72,7 +71,7 @@ class ApiServiceTest extends TestCase
      */
     public function tryDoCreate()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $expectedRequestContent = <<<EOF
@@ -99,13 +98,13 @@ EOF;
 
     /**
      * @test
-     *
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage API Key not set.
      */
     public function doCreateThrowsExceptionIfThereIsNoApiKey()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('API Key not set.');
+
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $service = new FakeApiService($client);
@@ -118,7 +117,7 @@ EOF;
      */
     public function tryDoUpdate()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $expectedRequestContent = <<<EOF
@@ -145,13 +144,13 @@ EOF;
 
     /**
      * @test
-     *
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage API Key not set.
      */
     public function doUpdateThrowsExceptionIfThereIsNoApiKey()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('API Key not set.');
+
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $service = new FakeApiService($client);
@@ -164,7 +163,7 @@ EOF;
      */
     public function tryDoDelete()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $client->expects($this->once())
@@ -180,13 +179,13 @@ EOF;
 
     /**
      * @test
-     *
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The domain cannot be an empty string.
      */
     public function doDeleteThrowsExceptionWhenNoDomainIsSpecified()
     {
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The domain cannot be an empty string.');
+
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
 
         $service = new FakeApiService($client);
@@ -205,7 +204,7 @@ EOF;
         $logger->expects($this->once())
             ->method('debug');
 
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
         $client->method('getLogger')->willReturn($logger);
         $client->expects($this->once())
@@ -230,7 +229,7 @@ EOF;
         $logger->expects($this->once())
             ->method('error');
 
-        /** @var ExpertSenderClient|PHPUnit_Framework_MockObject_MockObject $client */
+        /** @var ExpertSenderClient|\PHPUnit\Framework\MockObject\MockObject $client */
         $client = $this->createMock(ExpertSenderClient::class);
         $client->method('getLogger')->willReturn($logger);
         $client->expects($this->once())
