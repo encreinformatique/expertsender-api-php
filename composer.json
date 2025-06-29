@@ -24,10 +24,10 @@
   },
   "require": {
     "php": ">=7.1",
-    "symfony/options-resolver": "^4.2|^5.0|^6.0",
-    "symfony/serializer": "^4.2|^5.0|^6.0",
-    "symfony/property-access": "^4.2|^5.0|^6.0",
-    "symfony/dom-crawler": "^4.2|^5.0|^6.0",
+    "symfony/options-resolver": "^4.2|^5.0|^6.0|^7.0",
+    "symfony/serializer": "^4.2|^5.0|^6.0|^7.0",
+    "symfony/property-access": "^4.2|^5.0|^6.0|^7.0",
+    "symfony/dom-crawler": "^4.2|^5.0|^6.0|^7.0",
     "psr/log": "^1.0|^2.0|^3.0",
     "ext-dom": "*",
     "ext-curl": "*"
